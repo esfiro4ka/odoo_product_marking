@@ -10,6 +10,7 @@
         'views/menu.xml',
         'views/product.xml',
         'views/marking_act.xml',
+        'views/marked_product.xml',
         'security/ir.model.access.csv',
     ],
     'installable': True,

@@ -5,10 +5,10 @@ class Product(models.Model):
     _name = 'product_addition.product'
     _description = 'Description for Product'
 
-    name = fields.Char(string='Name', required=True)
+    name = fields.Char(string='Name')
     description = fields.Text(string='Description')
     marked_products = fields.One2many('product_addition.marked_product',
-                                      'original_product',
+                                      'product',
                                       string='Marked Products')
 
 
@@ -28,6 +28,11 @@ class ExpenseRevenueItem(models.Model):
     promotion_expense = fields.Float(string='Promotion Expense')
     agent_commission = fields.Float(string='Agent Commission')
     sales_price = fields.Float(string='Sales Price')
+
+    profit = fields.Float(
+        string='Profit', compute='_compute_profit', store=True)
+
+    date = fields.Date(string='Date')
 
     marking_act_id = fields.Many2one(
         'product_addition.marking_act', string='Marking Act')
@@ -53,20 +58,36 @@ class ExpenseRevenueItem(models.Model):
     def _onchange_agent_commission(self):
         self._invert_value('agent_commission')
 
+    @api.depends('purchase_cost', 'logistics_cost', 'promotion_expense',
+                 'agent_commission', 'sales_price')
+    def _compute_profit(self):
+        for record in self:
+            record.profit = (record.purchase_cost + record.logistics_cost +
+                             record.promotion_expense +
+                             record.agent_commission + record.sales_price)
 
-class ExpenseRevenue(models.Model):
-    _name = 'product_addition.expense_revenue'
-    _description = 'Expense/Revenue for Product'
 
-    date = fields.Date(string='Date')
+# class ExpenseRevenue(models.Model):
+#     _name = 'product_addition.expense_revenue'
+#     _description = 'Expense/Revenue for Product'
+
+#     date = fields.Date(string='Date')
 
 
 class MarkedProduct(models.Model):
     _name = 'product_addition.marked_product'
     _description = 'Description for Marked Product'
+    _inherit = 'product_addition.product'
 
-    original_product = fields.Many2one('product_addition.product',
-                                       string='Product')
+    last_stock = fields.Many2one('product_addition.stock', string='Last Stock')
+    last_status = fields.Selection([
+        ('purchase', 'Purchase'),
+        ('sale', 'Sale'),
+        ('internal_displacement', 'Internal Displacement'),
+    ], string='Last Status')
+
+    product = fields.Many2one('product_addition.product',
+                              string='Product')
     marking_act = fields.Many2one('product_addition.marking_act',
                                   string='Marking Act')
     marked_product_id = fields.Char(string='Marked Product Identifier')
@@ -100,3 +121,17 @@ class MarkingAct(models.Model):
         'marking_act_id',
         string='Expense/Revenue Items'
     )
+
+    @api.depends('quantity')
+    def apply_marking_act(self):
+        marked_product_obj = self.env['product_addition.marked_product']
+
+        for act in self:
+            for i in range(int(act.quantity)):
+                marked_product_obj.create({
+                    'product': act.product_line.id,
+                    'last_stock': act.destination_stock.id,
+                    'last_status': act.status,
+                })
+
+        return True

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_product_tree" model="ir.ui.view">
+        <field name="name">product_addition.marked_product.tree</field>
+        <field name="model">product_addition.marked_product</field>
+        <field name="arch" type="xml">
+            <tree create="0">
+                <field name="product"/>
+                <field name="last_stock"/>
+                <field name="last_status"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>

@@ -26,6 +26,9 @@
                             </tree>
                         </field>
                     </group>
+                    <header>
+                        <button string="Apply Marking Act" type="object" name="apply_marking_act" class="oe_highlight"/>
+                    </header>
                 </sheet>
             </form>
         </field>
