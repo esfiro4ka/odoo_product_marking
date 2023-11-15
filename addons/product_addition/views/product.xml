@@ -11,20 +11,6 @@
                     <field name="description" string="Description"/>
                 </group>
             </form>
-            <!-- <form string="Product">
-                <sheet>
-                    <h1>
-                        <field name="name" placeholder="Product name"/>
-                    </h1>
-                    <notebook>
-                        <page string="Addition">
-                            <group>
-                                <field name="description"/>
-                            </group>
-                        </page>
-                    </notebook>
-                </sheet>
-            </form> -->
         </field>
     </record>
 

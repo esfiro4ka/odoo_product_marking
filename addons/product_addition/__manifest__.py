@@ -9,6 +9,7 @@
     'data': [
         'views/menu.xml',
         'views/product.xml',
+        'views/marking_act.xml',
         'security/ir.model.access.csv',
     ],
     'installable': True,

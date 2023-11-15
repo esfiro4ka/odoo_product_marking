@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_marking_act_form" model="ir.ui.view">
+        <field name="name">marking_act.form</field>
+        <field name="model">product_addition.marking_act</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="product_line" widget="many2one" options="{'no_create': True}" placeholder="Выберите товар"/>
+                        <field name="quantity" string="Quantity" required="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_marking_act_tree" model="ir.ui.view">
+        <field name="name">marking_act.tree</field>
+        <field name="model">product_addition.marking_act</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="product_line"/>
+                <field name="quantity"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>
