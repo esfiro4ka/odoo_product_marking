@@ -8,6 +8,10 @@
             <form>
                 <sheet>
                     <group>
+                        <field name="date"/>
+                        <field name="status"/>
+                        <field name="source_stock" widget="many2one" options="{'create': True}" placeholder="Выберите склад откуда" invisible="status == 'purchase'" required="status != 'purchase'"/>
+                        <field name="destination_stock" widget="many2one" options="{'create': True}" placeholder="Выберите склад куда"/>
                         <field name="product_line" widget="many2one" options="{'no_create': True}" placeholder="Выберите товар"/>
                         <field name="quantity" string="Quantity" required="1"/>
                     </group>

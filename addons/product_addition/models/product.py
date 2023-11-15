@@ -12,6 +12,13 @@ class Product(models.Model):
                                       string='Marked Products')
 
 
+class Stock(models.Model):
+    _name = 'product_addition.stock'
+    _description = 'Description for Stock'
+
+    name = fields.Char(string='Stock Name', required=True)
+
+
 class MarkedProduct(models.Model):
     _name = 'product_addition.marked_product'
     _description = 'Description for Marked Product'
@@ -35,5 +42,17 @@ class MarkingAct(models.Model):
     # product_lines = fields.Many2many('product_addition.product',
     #                                  string='Product Lines')
     product_line = fields.Many2one('product_addition.product',
-                                   string='Product')
-    quantity = fields.Float(string='Quantity', default=1)
+                                   string='Product', required=True)
+    quantity = fields.Float(string='Quantity', default=1, required=True)
+    status = fields.Selection([
+        ('purchase', 'Purchase'),
+        ('sale', 'Sale'),
+        ('internal displacement', 'Internal displacement'),
+    ], string='Status', required=True)
+    source_stock = fields.Many2one('product_addition.stock',
+                                   string='Source stock',
+                                   create=True)
+    destination_stock = fields.Many2one('product_addition.stock',
+                                        string='Destination stock',
+                                        create=True,
+                                        required=True)
