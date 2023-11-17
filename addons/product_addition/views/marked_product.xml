@@ -1,14 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <record id="view_product_form" model="ir.ui.view">
+        <field name="name">product_addition.marked_product.form</field>
+        <field name="model">product_addition.marked_product</field>
+        <field name="arch" type="xml">
+            <form create="0">
+                <group>
+                    <field name="product" string="Product" readonly="1"/>
+                    <field name="last_stock" readonly="1"/>
+                    <field name="last_status" readonly="1"/>
+                    <field name="marked_product_id" readonly="1"/>
+                </group>
+                <group string="Expense/Revenue" col="3">
+                    <field name="purchase_cost_date" nolabel="1"/> <label for="purchase_cost" string="Purchase Cost"/> <field name="purchase_cost" nolabel="1"/>
+                    <field name="logistics_cost_date" nolabel="1"/> <label for="logistics_cost" string="Logistics Cost"/> <field name="logistics_cost" nolabel="1"/>
+                    <field name="promotion_expense_date" nolabel="1"/> <label for="promotion_expense" string="Promotion Expense"/> <field name="promotion_expense" nolabel="1"/>
+                    <field name="agent_commission_date" nolabel="1"/> <label for="agent_commission" string="Agent Commission"/> <field name="agent_commission" nolabel="1"/>
+                    <field name="sales_price_date" nolabel="1"/> <label for="sales_price" string="Sales Price"/> <field name="sales_price" nolabel="1"/>
+                </group>
+                <group>
+                    <field name="profit"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
     <record id="view_product_tree" model="ir.ui.view">
         <field name="name">product_addition.marked_product.tree</field>
         <field name="model">product_addition.marked_product</field>
         <field name="arch" type="xml">
             <tree create="0">
                 <field name="product"/>
-                <field name="last_stock"/>
-                <field name="last_status"/>
                 <field name="marked_product_id"/>
             </tree>
         </field>

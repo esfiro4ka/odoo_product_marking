@@ -10,21 +10,17 @@
                     <group>
                         <field name="date"/>
                         <field name="status"/>
-                        <field name="source_stock" widget="many2one" options="{'create': True}" placeholder="Выберите склад откуда" invisible="status == 'purchase'" required="status != 'purchase'"/>
-                        <field name="destination_stock" widget="many2one" options="{'create': True}" placeholder="Выберите склад куда"/>
-                        <field name="product_line" widget="many2one" options="{'no_create': True}" placeholder="Выберите товар"/>
+                        <field name="source_stock" widget="many2one" options="{'create': True}" placeholder="Select stock from" invisible="status == 'purchase'" required="status != 'purchase'"/>
+                        <field name="destination_stock" widget="many2one" options="{'create': True}" placeholder="Select stock where"/>
+                        <field name="product_line" widget="many2one" options="{'no_create': True}" placeholder="Select product"/>
                         <field name="quantity" string="Quantity" required="1"/>
                     </group>
-                    <group>
-                        <field name="expense_revenue_item" widget="one2many_list">
-                            <tree editable="bottom">
-                                <field name="purchase_cost"/>
-                                <field name="logistics_cost"/>
-                                <field name="promotion_expense"/>
-                                <field name="agent_commission"/>
-                                <field name="sales_price"/>
-                            </tree>
-                        </field>
+                    <group string="Expense/Revenue">
+                        <field name="purchase_cost"/>
+                        <field name="logistics_cost"/>
+                        <field name="promotion_expense"/>
+                        <field name="agent_commission"/>
+                        <field name="sales_price"/>
                     </group>
                     <header>
                         <button string="Apply Marking Act" type="object" name="apply_marking_act" class="oe_highlight"/>
