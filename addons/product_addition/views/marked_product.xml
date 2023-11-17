@@ -9,6 +9,7 @@
                 <field name="product"/>
                 <field name="last_stock"/>
                 <field name="last_status"/>
+                <field name="marked_product_id"/>
             </tree>
         </field>
     </record>

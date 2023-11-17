@@ -1,3 +1,6 @@
+# import uuid
+import random
+import string
 from odoo import models, fields, api
 
 
@@ -126,12 +129,21 @@ class MarkingAct(models.Model):
     def apply_marking_act(self):
         marked_product_obj = self.env['product_addition.marked_product']
 
+        def generate_random_letters(length):
+            return ''.join(random.choice(string.ascii_lowercase) for _ in range(length))
+
         for act in self:
             for i in range(int(act.quantity)):
+
+                # marked_product_id = str(uuid.uuid4())[:5] + '-' + str(uuid.uuid4())[:5] + '-' + str(uuid.uuid4())[:5]
+
+                marked_product_id = generate_random_letters(5) + '-' + generate_random_letters(5) + '-' + generate_random_letters(5)
+
                 marked_product_obj.create({
                     'product': act.product_line.id,
                     'last_stock': act.destination_stock.id,
                     'last_status': act.status,
+                    'marked_product_id': marked_product_id,
                 })
 
         return True
