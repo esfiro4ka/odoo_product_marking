@@ -35,8 +35,8 @@
         <field name="model">product_addition.marking_act</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="name"/>
                 <field name="product_line"/>
-                <field name="quantity"/>
             </tree>
         </field>
     </record>
