@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
     <record id="action_product_tree" model="ir.actions.act_window">
@@ -12,7 +13,7 @@
     </record>
 
     <record id="action_marking_act" model="ir.actions.act_window">
-        <field name="name">Marking Acts</field>
+        <field name="name">Marking acts</field>
         <field name="res_model">product_addition.marking_act</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="product_addition.view_marking_act_tree"/>
@@ -20,18 +21,18 @@
     </record>
 
     <record id="menu_marking_act" model="ir.ui.menu">
-        <field name="name">Marking Acts</field>
+        <field name="name">Marking acts</field>
         <field name="action" ref="product_addition.action_marking_act"/>
     </record>
 
     <record id="action_marked_product_tree" model="ir.actions.act_window">
-        <field name="name">Marked Products</field>
+        <field name="name">Marked products</field>
         <field name="res_model">product_addition.marked_product</field>
         <field name="view_mode">tree,form</field>
     </record>
 
     <record id="menu_marked_product_tree" model="ir.ui.menu">
-        <field name="name">Marked Products</field>
+        <field name="name">Marked products</field>
         <field name="action" ref="product_addition.action_marked_product_tree"/>
     </record>
 

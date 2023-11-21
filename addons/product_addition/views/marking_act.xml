@@ -10,10 +10,10 @@
                     <group>
                         <field name="date"/>
                         <field name="status"/>
-                        <field name="source_stock" widget="many2one" options="{'create': True}" placeholder="Select stock from" invisible="status == 'purchase'" required="status != 'purchase'"/>
-                        <field name="destination_stock" widget="many2one" options="{'create': True}" placeholder="Select stock where"/>
-                        <field name="product_line" widget="many2one" options="{'no_create': True}" placeholder="Select product"/>
-                        <field name="quantity" string="Quantity" required="1"/>
+                        <field name="source_stock" widget="many2one" options="{'create': True}" invisible="status == 'purchase'" required="status != 'purchase'"/>
+                        <field name="destination_stock" widget="many2one" options="{'create': True}"/>
+                        <field name="product_line" widget="many2one" options="{'no_create': True}"/>
+                        <field name="quantity" required="1"/>
                     </group>
                     <group string="Expense/Revenue">
                         <field name="purchase_cost"/>
@@ -23,7 +23,7 @@
                         <field name="sales_price"/>
                     </group>
                     <header>
-                        <button string="Apply Marking Act" type="object" name="apply_marking_act" class="oe_highlight"/>
+                        <button string="Apply marking act" type="object" name="apply_marking_act" class="oe_highlight"/>
                     </header>
                 </sheet>
             </form>

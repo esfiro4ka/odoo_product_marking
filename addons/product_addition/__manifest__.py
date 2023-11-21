@@ -1,9 +1,9 @@
 {
-    'name': 'Product Marking',
+    'name': 'Product marking',
     'version': '1.0',
-    'summary': 'Module for marking a product',
+    'summary': 'Product Marking Module',
     'sequence': 1,
-    'description': """Module for marking a product and changing its characteristics""",
+    'description': """Product Marking and Properties Modification Module""",
     'author': 'Olga Rotbardt',
     'depends': ['base'],
     'data': [
